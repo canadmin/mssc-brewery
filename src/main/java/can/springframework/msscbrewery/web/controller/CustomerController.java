@@ -1,13 +1,14 @@
 package can.springframework.msscbrewery.web.controller;
 
 import can.springframework.msscbrewery.web.model.CustomerDto;
-import can.springframework.msscbrewery.web.service.CustomerService;
+import can.springframework.msscbrewery.service.CustomerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/customer")
@@ -26,14 +27,14 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity saveCustomer(@RequestBody CustomerDto customerDto){
+    public ResponseEntity saveCustomer(@Valid @RequestBody CustomerDto customerDto){
         CustomerDto savedCustomer = customerService.saveNewCustomer(customerDto);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location","/api/v1/customer"+savedCustomer.getCustomerId());
         return new ResponseEntity(headers,HttpStatus.CREATED);
     }
     @PutMapping("/{customerId}")
-    public ResponseEntity updateCustomer(@PathVariable UUID customerId,@RequestBody CustomerDto customerDto){
+    public ResponseEntity updateCustomer(@PathVariable UUID customerId,@Validated @RequestBody CustomerDto customerDto){
         customerService.updateCustomer(customerId,customerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
