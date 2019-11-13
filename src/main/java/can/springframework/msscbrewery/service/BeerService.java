@@ -1,4 +1,4 @@
-package can.springframework.msscbrewery.web.service;
+package can.springframework.msscbrewery.service;
 
 import can.springframework.msscbrewery.web.model.BeerDto;
 

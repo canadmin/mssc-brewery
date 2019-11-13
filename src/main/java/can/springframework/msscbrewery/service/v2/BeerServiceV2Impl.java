@@ -1,4 +1,4 @@
-package can.springframework.msscbrewery.web.service.v2;
+package can.springframework.msscbrewery.service.v2;
 
 import can.springframework.msscbrewery.web.model.v2.BeerDtoV2;
 import org.springframework.stereotype.Service;
